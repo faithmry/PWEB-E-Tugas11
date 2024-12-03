@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Formulir Pendaftaran</h1>
         <a href="index.php" class="back-button">← Kembali ke Menu Utama</a>
-        <form action="simpan.php" method="POST" id="formDaftar">
+        <form action="simpan.php" method="POST" id="formDaftar" enctype="multipart/form-data">
             <input type="text" name="nama" placeholder="Nama Lengkap" required>
             <textarea name="alamat" placeholder="Alamat Lengkap" required></textarea>
             <div class="rad">
@@ -30,11 +30,16 @@
                 <option>Konghucu</option>
             </select>
             <input type="text" name="asal_sekolah" placeholder="Sekolah Asal" required>
+            <div class="rad">
+                <label for="foto">Unggah Foto:</label>
+                <input type="file" name="foto" accept="image/*" required>
+            </div>
+            <br></br>
             <input type="submit" value="Daftar">
         </form>
         <div id="confirmationMessage" class="confirmation"></div>
     </div>
-
+    
     <script>
     const form = document.getElementById('formDaftar');
     const confirmationMessage = document.getElementById('confirmationMessage');

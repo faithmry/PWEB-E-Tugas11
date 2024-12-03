@@ -35,6 +35,7 @@ $queryPegawai = mysqli_query($conn, $sqlPegawai);
                         <th>Jenis Kelamin</th>
                         <th>Agama</th>
                         <th>Sekolah Asal</th>
+                        <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -49,10 +50,12 @@ $queryPegawai = mysqli_query($conn, $sqlPegawai);
                         echo "<td>".$siswa['jenis_kelamin']."</td>";
                         echo "<td>".$siswa['agama']."</td>";
                         echo "<td>".$siswa['asal_sekolah']."</td>";
+                        echo "<td><img src='uploads/".$siswa['foto']."' width='100' alt='Foto'></td>";
                         echo "<td>";
                         echo "<a href='edit.php?id=".$siswa['id']."' class='edit-button'>Edit</a>";
                         echo "<a href='hapus.php?id=".$siswa['id']."' class='delete-button'>Hapus</a>";
                         echo "<a href='cetak-kartu.php?id=".$siswa['id']."' class='print-button'>Cetak Kartu</a>";
+
                         echo "</tr>";
                     }
                     ?>
