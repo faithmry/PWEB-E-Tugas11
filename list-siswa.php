@@ -46,7 +46,10 @@ $query = mysqli_query($conn, $sql);
                         echo "<td>".$siswa['jenis_kelamin']."</td>";
                         echo "<td>".$siswa['agama']."</td>";
                         echo "<td>".$siswa['asal_sekolah']."</td>";
-                        echo "<td><a href='cetak-kartu.php?id=".$siswa['id']."' class='print-button'>Cetak Kartu</a></td>";
+                        echo "<td>";
+                        echo "<a href='edit.php?id=".$siswa['id']."' class='edit-button'>Edit</a>";
+                        echo "<a href='hapus.php?id=".$siswa['id']."' class='delete-button'>Hapus</a>";
+                        echo "<a href='cetak-kartu.php?id=".$siswa['id']."' class='print-button'>Cetak Kartu</a>";
                         echo "</tr>";
                     }
                     ?>
