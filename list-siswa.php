@@ -1,8 +1,11 @@
 <?php
 include 'config.php';
 
-$sql = "SELECT * FROM siswa";
-$query = mysqli_query($conn, $sql);
+$sqlSiswa = "SELECT * FROM siswa";
+$querySiswa = mysqli_query($conn, $sqlSiswa);
+
+$sqlPegawai = "SELECT * FROM pegawai";
+$queryPegawai = mysqli_query($conn, $sqlPegawai);
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +13,7 @@ $query = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa</title>
+    <title>Data Siswa dan Pegawai</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,10 +22,10 @@ $query = mysqli_query($conn, $sql);
         <a href="index.php" class="back-button">← Kembali ke Menu Utama</a>
 
         <div class="search-bar">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari Nama Siswa...">
+            <input type="text" id="searchInputSiswa" class="search-input" placeholder="Cari Nama Siswa...">
         </div>
 
-        <?php if (mysqli_num_rows($query) > 0): ?>
+        <?php if (mysqli_num_rows($querySiswa) > 0): ?>
             <table id="siswaTable">
                 <thead>
                     <tr>
@@ -37,10 +40,10 @@ $query = mysqli_query($conn, $sql);
                 </thead>
                 <tbody>
                     <?php
-                    $no = 1;
-                    while ($siswa = mysqli_fetch_array($query)) {
+                    $noSiswa = 1;
+                    while ($siswa = mysqli_fetch_array($querySiswa)) {
                         echo "<tr>";
-                        echo "<td>".$no++."</td>";
+                        echo "<td>".$noSiswa++."</td>";
                         echo "<td>".$siswa['nama']."</td>";
                         echo "<td>".$siswa['alamat']."</td>";
                         echo "<td>".$siswa['jenis_kelamin']."</td>";
@@ -58,16 +61,73 @@ $query = mysqli_query($conn, $sql);
         <?php else: ?>
             <div class='no-data'>Belum ada data siswa</div>
         <?php endif; ?>
-    </div>
+        <br></br>
+        <h1>Data Pegawai</h1>
 
+        <div class="search-bar">
+            <input type="text" id="searchInputPegawai" class="search-input" placeholder="Cari Nama Pegawai...">
+        </div>
+
+        <?php if (mysqli_num_rows($queryPegawai) > 0): ?>
+            <table id="pegawaiTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Jabatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $noPegawai = 1;
+                    while ($pegawai = mysqli_fetch_array($queryPegawai)) {
+                        echo "<tr>";
+                        echo "<td>".$noPegawai++."</td>";
+                        echo "<td>".$pegawai['nama']."</td>";
+                        echo "<td>".$pegawai['jabatan']."</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <div class='no-data'>Belum ada data pegawai</div>
+        <?php endif; ?>
+    </div>
     <script>
-        const searchInput = document.getElementById('searchInput');
+    
+        const searchInputSiswa = document.getElementById('searchInputSiswa');
         const siswaTable = document.getElementById('siswaTable')?.getElementsByTagName('tbody')[0];
 
         if (siswaTable) {
-            searchInput.addEventListener('keyup', function() {
-                const filter = searchInput.value.toLowerCase();
+            searchInputSiswa.addEventListener('keyup', function() {
+                const filter = searchInputSiswa.value.toLowerCase();
                 const rows = siswaTable.getElementsByTagName('tr');
+
+                for (let i = 0; i < rows.length; i++) {
+                    const cells = rows[i].getElementsByTagName('td');
+                    let rowText = '';
+                    for (let j = 0; j < cells.length; j++) {
+                        rowText += cells[j].textContent.toLowerCase();
+                    }
+
+                    if (rowText.includes(filter)) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        }
+
+    
+        const searchInputPegawai = document.getElementById('searchInputPegawai');
+        const pegawaiTable = document.getElementById('pegawaiTable')?.getElementsByTagName('tbody')[0];
+
+        if (pegawaiTable) {
+            searchInputPegawai.addEventListener('keyup', function() {
+                const filter = searchInputPegawai.value.toLowerCase();
+                const rows = pegawaiTable.getElementsByTagName('tr');
 
                 for (let i = 0; i < rows.length; i++) {
                     const cells = rows[i].getElementsByTagName('td');
