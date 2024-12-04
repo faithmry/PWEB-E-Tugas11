@@ -258,13 +258,30 @@ tr:hover {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
-
   display: inline-block;
   margin: 5px;
   width: 100px;
 }
 
 .print-button:hover {
+  background-color: #2980b9;
+}
+
+.pdf-button {
+  color: #fff;
+  background-color: #3498db;
+  padding: 5px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  text-wrap: nowrap;
+  text-align: center;
+  margin: 5px;
+  width: 100px;
+}
+
+.pdf-button:hover {
   background-color: #2980b9;
 }
 

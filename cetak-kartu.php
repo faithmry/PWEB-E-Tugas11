@@ -14,7 +14,7 @@ $jenis_kelamin = ucfirst($siswa['jenis_kelamin']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Kartu Pendaftaran</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="registration-card">

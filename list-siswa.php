@@ -14,7 +14,7 @@ $queryPegawai = mysqli_query($conn, $sqlPegawai);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Siswa dan Pegawai</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="table-container">
@@ -55,9 +55,9 @@ $queryPegawai = mysqli_query($conn, $sqlPegawai);
                         echo "<a href='edit.php?id=".$siswa['id']."' class='edit-button'>Edit</a>";
                         echo "<a href='hapus.php?id=".$siswa['id']."' class='delete-button'>Hapus</a>";
                         echo "<a href='cetak-kartu.php?id=".$siswa['id']."' class='print-button'>Cetak Kartu</a>";
-
                         echo "</tr>";
                     }
+                    echo "<a href='cetak-list.php' class='pdf-button'>Download PDF</a>";
                     ?>
                 </tbody>
             </table>
